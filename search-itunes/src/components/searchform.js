@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Counter from "./counter"
 
 export class SearchForm extends Component {
 
@@ -44,20 +45,22 @@ export class SearchForm extends Component {
                 }}>Search</button>
 
                 <button onClick={() => {
-                    if(!this.flag_asc_sort){
-                        this.state.users.sort((user1,user2)=>(user1.age-user2.age));
+                    if (!this.flag_asc_sort) {
+                        this.state.users.sort((user1, user2) => (user1.age - user2.age));
                     } else {
-                        this.state.users.sort((user1,user2)=>(-1*(user1.age-user2.age)));
+                        this.state.users.sort((user1, user2) => (-1 * (user1.age - user2.age)));
                     }
                     this.flag_asc_sort = !this.flag_asc_sort;
                     this.save_users();
                 }}>sort</button>
+                    
+                <Counter users={this.state.users}></Counter>
 
                 <ol>
                     {this.state.users.map((user, index) =>
                         <li>
                             {user.name + " " + user.age + " " + user.gender + " " + JSON.stringify(user.languages)}
-                            
+
                             <button onClick={() => {
                                 this.state.users.splice(index, 1);
                                 this.save_users();
@@ -65,6 +68,8 @@ export class SearchForm extends Component {
                         </li>
                     )}
                 </ol>
+
+
             </div>
         )
     }
@@ -102,7 +107,7 @@ export class SearchForm extends Component {
         });
     }
 
-    save_users(){
+    save_users() {
         this.setState({
             users: this.state.users
         });
