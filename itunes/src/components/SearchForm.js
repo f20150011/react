@@ -2,16 +2,26 @@ import React from 'react';
 import SearchList from './SearchList';
 
 class SearchForm extends React.Component {
+    URL = {
+        baseUrl: "https://itunes.apple.com/",
+        search: "search?term=",
+        defaultsearch: "eminem",
+        limit: "&limit=5",
+        defaultUrl: "https://itunes.apple.com/search?term=eminem&limit=5"
+    };
     constructor() {
         super();
         this.state = {
-            name: "",
+            query: "",
             results: []
         }
         this.search = this.search.bind(this);
     }
     itunesAPI() {
-        fetch("https://itunes.apple.com/search?term=jack+johnson&limit=5")
+        let URL = this.URL.defaultUrl;
+        if(this.state.query)
+            URL = this.URL.baseUrl+this.URL.search+ this.state.query +this.URL.limit;
+        fetch(URL)
             .then(res => res.json())
             .then(
                 (response) => {
@@ -30,13 +40,14 @@ class SearchForm extends React.Component {
     }
     render() {
         var searchFormStyle = {
-
+        };
+        var formStyle = {
+            // backgroundColor : "#eaeaea"
         };
         return (
             <div className="form-group" style={searchFormStyle}>
-                <input className="form-control" name="name" value={this.state.name} onChange={this.search}></input>
+                <input style={formStyle} className="form-control" name="query" value={this.state.name} onChange={this.search}></input>
                 <button className="btn btn-primary form-control" onClick={(event) => {
-                    // make an ajax call using jquery
                     this.itunesAPI();
                 }}>Search</button>
                 <SearchList results={this.state.results}></SearchList>

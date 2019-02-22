@@ -13,7 +13,8 @@ class App extends React.Component {
 
         var appStyle = {
             width: 500,
-            padding: 25
+            padding: 25,
+            fontWeight : 250
         };
 
         return (
@@ -31,12 +32,14 @@ App.protoTypes = {
 };
 
 App.defaultProps = {
-    URL: {
-        baseUrl: "https://itunes.apple.com/",
-        search: "search?term=",
-        defaultsearch: "eminem",
-        limit: "&limit=5"
-    }
+    // not working have a look
+    // URL: {
+    //     baseUrl: "https://itunes.apple.com/",
+    //     search: "search?term=",
+    //     defaultsearch: "eminem",
+    //     limit: "&limit=5",
+    //     defaultUrl: "https://itunes.apple.com/search?term=eminem&limit=5"
+    // }
 };
 
 export default App;

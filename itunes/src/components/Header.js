@@ -10,11 +10,12 @@ class Header extends React.Component {
     render() {
         var headerStyle = {
             fontSize: 50,
-            color: '#4286f4'
+            color: '#4286f4',
+            textAlign: 'center'
         };
         return (
             <div style={headerStyle}>
-                <b>Swalala Player</b>
+                <b>Swalala</b>
             </div>
         );
     }
